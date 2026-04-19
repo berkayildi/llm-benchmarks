@@ -4,6 +4,15 @@ Benchmark datasets and results evaluating LLMs across providers on quality, late
 
 See [LLMShot](https://llmshot.vercel.app) for the canonical interactive view of the data.
 
+```mermaid
+flowchart LR
+    A[mcp-content-pipeline<br/>dataset] --> C
+    B[mcp-llm-eval<br/>dataset] --> C
+    C[mcp-llm-eval<br/>engine] --> D[llm-benchmarks<br/>JSON artifacts]
+    D --> E[GitHub Pages]
+    E --> F[LLMShot<br/>dashboard]
+```
+
 ## Domains
 
 ### Real-Time Inference
