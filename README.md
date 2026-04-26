@@ -6,8 +6,9 @@ See [LLMShot](https://llmshot.vercel.app) for the canonical interactive view of 
 
 ```mermaid
 flowchart LR
-    A[mcp-content-pipeline<br/>dataset] --> C
-    B[mcp-llm-eval<br/>dataset] --> C
+    A[mcp-content-pipeline<br/>generation dataset] --> C
+    B[mcp-llm-eval<br/>generation + retrieval datasets] --> C
+    G[meeting-agent<br/>generation dataset] --> C
     C[mcp-llm-eval<br/>engine] --> D[llm-benchmarks<br/>JSON artifacts]
     D --> E[GitHub Pages]
     E --> F[LLMShot<br/>dashboard]
@@ -48,11 +49,13 @@ This separation — engine in mcp-llm-eval, datasets in the consuming repos — 
 
 ## Methodology
 
-- Evaluation engine: [mcp-llm-eval](https://github.com/berkayildi/mcp-llm-eval) v0.4.0+
+- Evaluation engine: [mcp-llm-eval](https://github.com/berkayildi/mcp-llm-eval) v0.5.1+
 - `max_output_tokens`: 2048 across all providers
 - Gemini 2.5 Flash: thinking disabled (`thinking_budget=0`) for benchmark parity
 - Judge model: `gpt-4o-mini`, scoring faithfulness and relevance (0-1)
-- Real-Time Inference was run before the Gemini thinking-fix landed in mcp-llm-eval v0.4.0. Flash numbers in that benchmark are affected. Text Generation benchmarks use the fixed version.
+- Retrieval adapter: BM25 (in-memory, via `rank_bm25`), k=5
+- RAG quality is scored on two LLM-as-judge axes: `context_relevance` (per-chunk relevance to the query) and `citation_faithfulness` (whether the generated answer is supported by retrieved chunks). Both judges produce 1-5 integer scores, normalised to 0-1 floats internally.
+- Retrieval latency is timed per-query and reported as p50 and p95. BM25 in-memory typically lands in single-digit milliseconds.
 
 ## Evaluation tools
 
