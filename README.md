@@ -22,7 +22,7 @@ Tests latency-critical, streaming use cases where TTFT and per-query cost matter
 
 ### Text Generation
 
-Tests structured output quality on longer-form reasoning and content tasks. Two sub-benchmarks: **Eval Gates** (factual/reasoning/summarization prompts for CI/CD quality gates) and **Content Pipeline** (video analysis and X feed digest). Scope: 5 models × 19 questions × 95 runs total.
+Tests structured output quality on longer-form reasoning and content tasks. Two sub-benchmarks: **Eval Gates** (factual/reasoning/summarization prompts for CI/CD quality gates) and **Content Pipeline** (video analysis and X feed digest). Scope: 8 models × 30 questions × 240 runs total (Eval Gates: 20q, Content Pipeline: 10q).
 
 ### Retrieval & RAG
 
@@ -64,7 +64,7 @@ This separation — engine in mcp-llm-eval, datasets in the consuming repos — 
 
 ## Methodology
 
-- Evaluation engine: [mcp-llm-eval](https://github.com/berkayildi/mcp-llm-eval) v0.7.0+
+- Evaluation engine: [![mcp-llm-eval](https://img.shields.io/pypi/v/mcp-llm-eval?label=mcp-llm-eval&color=blue&style=flat-square)](https://pypi.org/project/mcp-llm-eval/)
 - `max_output_tokens`: 2048 across all providers
 - Gemini 2.5 Flash: thinking disabled (`thinking_budget=0`) for benchmark parity
 - Judge model: `gpt-4o-mini`, scoring faithfulness and relevance (0-1)
