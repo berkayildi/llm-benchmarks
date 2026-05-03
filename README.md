@@ -8,7 +8,6 @@ See [LLMShot](https://llmshot.vercel.app) for the canonical interactive view of 
 flowchart LR
     A[mcp-content-pipeline<br/>generation dataset] --> C
     B[mcp-llm-eval<br/>generation + retrieval datasets] --> C
-    G[meeting-agent<br/>generation dataset] --> C
     C[mcp-llm-eval<br/>engine] --> D[llm-benchmarks<br/>JSON artifacts]
     D --> E[GitHub Pages]
     E --> F[LLMShot<br/>dashboard]
@@ -37,7 +36,7 @@ Headline finding: Google embeddings beat BM25 on recall (+5pts) and nDCG (+4pts)
 
 Each benchmark's dataset is defined in the repo that consumes the model being tested. The dataset lives with the use case it represents — so the benchmark reflects real production requirements, not synthetic prompts.
 
-- **Real-Time Inference** — meeting transcript analysis questions (ADR, sprint planning, client discovery). Dataset is private (proprietary domain).
+- **Real-Time Inference** — latency-critical streaming use cases. Dataset is private and use-case-specific.
 - **Eval Gates** — [mcp-llm-eval](https://github.com/berkayildi/mcp-llm-eval)'s own factual/reasoning/summarization dataset, used to dogfood the evaluation engine.
 - **Content Pipeline** — [mcp-content-pipeline](https://github.com/berkayildi/mcp-content-pipeline)'s YouTube transcript and X feed digest prompts, taken from the production MCP server's real tool contracts.
 - **Retrieval & RAG** — [mcp-llm-eval](https://github.com/berkayildi/mcp-llm-eval)'s own AWS documentation corpus (60 chunks across 8 services). 20 labelled queries with `relevant_chunk_ids` ground truth, mix of single-chunk lookup, multi-chunk synthesis, and cross-service reasoning.
