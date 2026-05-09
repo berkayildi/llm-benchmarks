@@ -1,0 +1,36 @@
+{
+  "timestamp": "20260509_154940",
+  "k": 5,
+  "adapter": "bm25",
+  "total_queries": 36,
+  "total_questions": 36,
+  "total_model_runs": 36,
+  "total_errors": 0,
+  "total_elapsed_sec": 348.8,
+  "total_estimated_cost": 0.0,
+  "judge_model": "gpt-4o-mini",
+  "skipped": [],
+  "overall": {
+    "gpt-4o-mini": {
+      "provider": "openai",
+      "model": "gpt-4o-mini",
+      "runs": 36,
+      "k": 5,
+      "avg_recall_at_k": 0.7778,
+      "avg_precision_at_k": 0.1556,
+      "avg_mrr": 0.5278,
+      "avg_ndcg_at_k": 0.5908,
+      "avg_context_relevance": 0.7069,
+      "avg_citation_faithfulness": 0.9931,
+      "avg_retrieval_latency_ms": 6.6,
+      "p50_retrieval_latency_ms": 6.4,
+      "p95_retrieval_latency_ms": 8.4,
+      "avg_ttft_ms": 705.3056,
+      "avg_latency_ms": 2544.6389,
+      "avg_input_tokens": 3712.7222,
+      "avg_output_tokens": 107.6389,
+      "avg_cost_per_query": 0.0
+    }
+  },
+  "by_category": {}
+}
